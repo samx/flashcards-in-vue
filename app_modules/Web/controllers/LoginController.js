@@ -1,0 +1,84 @@
+const constants = require('../lib/constants');
+const passport = require('passport');
+require('../lib/passport-strategies');
+const { app } = require(__basedir + '/global/config');
+const catchAsync = require("./catchAsync");
+
+exports.login = function (req, res, next) {
+    return res.render('login', { 
+        title: 'Flashy site', 
+        message: 'Example Login Page', 
+        user: JSON.stringify(req.user), 
+        domain: app.webDomain 
+    })
+}
+
+exports.logout = catchAsync(async (req, res, next) => {
+    const { redirect = true, returnTo = null } = req.query;
+
+    res.clearCookie('connect.sid');
+
+    req.logout();
+
+    if(redirect === true){
+
+        if(returnTo) res.redirect(returnTo); //redirect to a user specific page
+        else res.redirect('/');  //redirect to homepage
+
+    }else
+        res.send({ status:'success', message:'user logged out'})    
+})
+
+exports.isLogged = (req, res, next) => {
+    res.send({ isLogged: req.isAuthenticated() })
+}
+
+exports.thirdPartyProviderDataFromSignIn = async function (req, access_token, refresh_token, profile, done) {
+    let { provider, id: provider_id, email } = profile;
+    
+    const user_id = null;
+
+    return done(null, Object.assign({}, req.user, { user_id, provider }));
+}
+
+// Google Sign in.
+exports.googleSignInCompleted = async function (req, res) {   
+    let { returnTo } = req.query;
+    return res.render('userLoginComplete', { title: 'google', provider: 'google', user: req.user, domain: req.hostname, returnTo })
+}
+
+exports.googleGotoSignIn = function (req, res, next) {
+    const { returnTo, magic_token } = req.query;
+
+    const state = returnTo
+        ? new Buffer(JSON.stringify({ returnTo,magic_token })).toString('base64')
+        : undefined
+
+    return passport.authenticate('google', {
+        callbackURL: `${process.env.DEV_APP_WEB_DOMAIN ? 'http://' : 'https://'}${req.hostname}/${constants.GOOGLE.API_SIGNIN_CALLBACK_ROUTE}`,
+        scope: ['email'],
+        accessType: 'offline',
+        state
+    })(req, res, next);
+}
+
+exports.googleCallbackFromSignIn = function (req, res, next) {
+    let urlBack = ''
+    try {
+        const { state } = req.query
+        const { returnTo, magic_token } = JSON.parse(new Buffer(state, 'base64').toString())
+        if(magic_token){
+            urlBack =  "?returnTo="+returnTo+"&magic_token="+magic_token;
+        }else{
+            urlBack =  "?returnTo="+returnTo;
+        }
+        
+    } catch (e) {
+        // just redirect normally below
+    }
+    return passport.authenticate('google', {
+        callbackURL: `${process.env.DEV_APP_WEB_DOMAIN ? 'http://' : 'https://'}${req.hostname}/${constants.GOOGLE.API_SIGNIN_CALLBACK_ROUTE}`,
+        successRedirect: constants.GOOGLE.SUCCESS_REDIRECT_ROUTE+"/" + urlBack
+    })(req, res, next);
+}
+

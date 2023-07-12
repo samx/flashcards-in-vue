@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <style>
+        html,
+        body {
+            background-color: #37474f;
+            color: white
+        }
+
+        button.button--twitch {
+            background-color: #6542a6;
+        }
+
+        button.button--facebook {
+            background-color: #3F65B3;
+        }
+
+        button.button--twitter {
+            background-color: #51A3E2;
+            color: white
+        }
+
+
+        button.button--youtube {
+            background-color: #e62117;
+        }
+
+
+        .button.button--youtube {
+            background-color: #e62117;
+        }
+
+        .login-button {
+            padding: 0;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            margin: 6px 10px;
+        }
+
+        a {
+            color: White;
+        }
+
+        .button {
+            padding: 0 12px;
+            border-radius: 3px;
+            font-size: 12px;
+            text-transform: uppercase;
+            background: #91979a;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            white-space: nowrap;
+            overflow: hidden;
+            margin: 0;
+            display: inline-block;
+            height: 36px;
+            line-height: 34px;
+            transition: all 275ms;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            font-family: Roboto;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>{{message }} - </h1>
+    <h3>{{user }}</h3>
+
+    {{#if user}}
+        Your logged in
+
+        <a href="https://{{domain}}/api/web/logout">
+            <i class="fab fa-global"></i>Logout
+        </a>
+    {{else}}
+        <button id="connect-with-google" class="button login-button button--google" data-platform="google">
+            <i class="fab fa-google"></i> Link Account with Google
+        </button>
+        <br>
+        <button id="connect-with-facebook" class="button login-button button--facebook" data-platform="facebook">
+            <i class="fab fa-facebook"></i> Link Account with Facebook
+        </button>
+        <br>
+        <button id="connect-with-twitter" class="button login-button button--twitter" data-platform="twitter">
+            <i class="fab fa-twitter"></i> Link Account with Twitter
+        </button>
+        <br>
+        <button id="link-with-youtube" class="button login-button button--youtube" data-platform="youtube">
+            <i class="fab fa-youtube"></i> Link Account with YouTube
+        </button>
+    {{/if}}
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+        integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(() => {
+
+            $('#connect-with-google').click(() => {
+                let currentWindow = window.location.href;
+                window.location.href = `https://{{domain}}/api/web/auth/google?returnTo=${currentWindow}`;
+            })
+            /*
+            $('#connect-with-twitch').click(() => {
+                window.location.href = "http://{{domain}}/api/web/auth/twitch";
+            })
+            $('#connect-with-twitter').click(() => {
+                window.location.href = "http://{{domain}}/api/web/auth/twitter";
+            })
+            $('#link-with-youtube').click(() => {
+                window.location.href = "http://{{domain}}/api/web/auth/youtube-linked";
+            })
+            */
+        })
+
+    </script>
+
+
+
+</body>
+
+</html>
