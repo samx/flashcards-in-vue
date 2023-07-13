@@ -13,19 +13,19 @@
   "dependencies": {
     "@nuxt/http": "^0.6.4",
     "@nuxtjs/axios": "^5.13.4",
-    "nuxt": "^2.15.6",
-    "nuxt-buefy": "^0.3.2",
-    "nuxt-session": "^1.0.3",
-    "cross-env": "^7.0.2",
     "connect-redis": "^4.0.3",
     "cookie": "^0.4.1",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
+    "cross-env": "^7.0.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.4",
     "express-handlebars-multi": "^0.2.31",
     "express-session": "^1.15.6",
     "morgan": "^1.9.0",
+    "nuxt": "^2.15.6",
+    "nuxt-buefy": "^0.3.2",
+    "nuxt-session": "^1.0.3",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.2.0",
     "path": "^0.12.7",
@@ -38,7 +38,8 @@
     "request-promise-core": "^1.1.4",
     "requirefrom": "^0.2.1",
     "sass": "1.35.2",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^10.1.1",
+    "unique-names-generator": "^4.7.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",

@@ -4,6 +4,8 @@ require('../lib/passport-strategies');
 const { app } = require(__basedir + '/global/config');
 const catchAsync = require("./catchAsync");
 
+const { UserService } = require('../services');
+
 exports.login = function (req, res, next) {
     return res.render('login', { 
         title: 'Flashy site', 
@@ -15,16 +17,12 @@ exports.login = function (req, res, next) {
 
 exports.logout = catchAsync(async (req, res, next) => {
     const { redirect = true, returnTo = null } = req.query;
-
     res.clearCookie('connect.sid');
-
     req.logout();
 
     if(redirect === true){
-
         if(returnTo) res.redirect(returnTo); //redirect to a user specific page
         else res.redirect('/');  //redirect to homepage
-
     }else
         res.send({ status:'success', message:'user logged out'})    
 })
@@ -33,11 +31,36 @@ exports.isLogged = (req, res, next) => {
     res.send({ isLogged: req.isAuthenticated() })
 }
 
-exports.thirdPartyProviderDataFromSignIn = async function (req, access_token, refresh_token, profile, done) {
-    let { provider, id: provider_id, email } = profile;
-    
-    const user_id = null;
+const { uniqueNamesGenerator, adjectives, colors, animals, starWars  } = require('unique-names-generator');
 
+exports.thirdPartyProviderDataFromSignIn = async function (req, access_token, refresh_token, profile, done) {
+    let { provider, id: provider_id } = profile;
+    
+    //Find user
+    let foundUser = await UserService.getUserByProviderIdService({ provider, provider_id });
+
+    provider_id = provider_id.toString();
+
+    let user_id = null;
+
+    //User not found in DB. Create new user and return user_id
+    if (foundUser === false) {
+        const randomName = uniqueNamesGenerator({ 
+            dictionaries: [adjectives, colors, animals, starWars ],
+            separator: ''
+        }); 
+
+        let result = await UserService.createUserService({
+            username:randomName,
+            provider_id,
+            provider
+        });
+
+        user_id = result;
+    } else {
+        user_id = foundUser.user_id;
+    }
+	
     return done(null, Object.assign({}, req.user, { user_id, provider }));
 }
 
