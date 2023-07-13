@@ -4,6 +4,7 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars-multi');
+const bodyParser = require("body-parser");
 
 const { Nuxt, Builder } = require('nuxt');
 const cookieParser = require("cookie-parser");
@@ -52,6 +53,11 @@ const logger = require('morgan');
 
 // Logging.
 app.use(logger('dev'));
+
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
+
 
 // View Engine (HandleBars).
 app.engine('.hbs', exphbs({ ext: '.hbs' }));
