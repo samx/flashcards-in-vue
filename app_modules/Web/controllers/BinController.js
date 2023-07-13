@@ -8,3 +8,11 @@ exports.getTotalCardsInBinsByUserId = catchAsync(async (req, res, next) => {
 
     return res.send(results)
 })
+
+exports.getCardsInBinByUserId = catchAsync(async (req, res, next) => {
+    const { user_id } = req.user || { user_id: null };
+    let { bin_id } = req.params;
+    const results = await BinService.getCardsInBinByUserIdService({user_id, bin_id});
+
+    return res.send(results)
+})

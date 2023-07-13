@@ -5,3 +5,9 @@ exports.getTotalCardsInBinsByUserIdFunc = ({ user_id }) => {
         return results
     })
 }
+
+exports.getCardsInBinByUserIdFunc = ({ user_id, bin_id }) => {
+    return db.func('bins_get_cards_in_bin', [user_id, bin_id]).then((results) => {
+        return results
+    })
+}

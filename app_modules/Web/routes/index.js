@@ -22,4 +22,5 @@ router.get("/google-sign-in-complete", LoginController.googleSignInCompleted);
 
 // 
 router.get("/bins", BinController.getTotalCardsInBinsByUserId);
+router.get("/bin/:bin_id", BinController.getCardsInBinByUserId);
 module.exports = router;
