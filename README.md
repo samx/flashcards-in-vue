@@ -15,8 +15,14 @@ Card table
 |---------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | card_id             | serial/primaryKey  |                                                                                                                                |
 | user_id             | integer/foreignKey | User who the flash card belongs to.                                                                                            |
-| word                | text/UniqueKey     | Flash card word. A user cannot create duplicate words. Has a unique key constraint shared with the user_id.                    |
-| definition          | text/UniqueKey     | Definition of the word.                                                                                                        |
-| bin_word_level      | smallInt           | The bin number the word is currently in. Default 0. Max bin level 11.                                                          |
+| word                | text/uniqueKey     | Flash card word. A user cannot create duplicate words. Has a unique key constraint shared with the user_id.                    |
+| definition          | text/uniqueKey     | Definition of the word.                                                                                                        |
+| bin_id      | smallInt/foreignKey           | The bin number the word is currently in. Default 1.                                                          |
 | bin_word_date_added | timestamp          | Time the word was placed in the bin. Will be used against current timestamp to measure the next time  the card should appear.  |
 | word_wrong_count    | smallInt           | Tracks the number of times the user got the answer wrong.                                                                      |
+
+Bins table ( a simple table to help manage and query cards in bins)
+| column              | type              | description                                                                                                                    |
+|---------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| bin_id              | serial/primaryKey |                                                                                                                                |
+| bin_level           | integer           | The bin number that cards move into. Range 0-11   

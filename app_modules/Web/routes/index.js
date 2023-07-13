@@ -5,11 +5,9 @@ const { ensureAuthenticated } = require(__basedir + '/global/helpers');
 const router = express.Router();
 
 const {
-  ExampleController,
-  LoginController
+  LoginController,
+  BinController
 } = controllers;
-
-router.get('/helloWorld', ExampleController.helloWorld);
 
 //Login
 router.get('/login', LoginController.login);
@@ -21,4 +19,7 @@ router.get("/auth/google", LoginController.googleGotoSignIn);
 router.get("/auth/google/callback", LoginController.googleCallbackFromSignIn);
 router.get("/google-sign-in-complete", LoginController.googleSignInCompleted);
 
+
+// 
+router.get("/bins", BinController.getTotalCardsInBinsByUserId);
 module.exports = router;
