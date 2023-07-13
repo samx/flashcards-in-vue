@@ -17,7 +17,6 @@ exports.login = function (req, res, next) {
 
 exports.logout = catchAsync(async (req, res, next) => {
     const { redirect = true, returnTo = null } = req.query;
-    res.clearCookie('connect.sid');
     req.logout();
 
     if(redirect === true){
@@ -86,18 +85,15 @@ exports.googleGotoSignIn = function (req, res, next) {
 }
 
 exports.googleCallbackFromSignIn = function (req, res, next) {
-    let urlBack = ''
+    let urlBack;
     try {
         const { state } = req.query
-        const { returnTo, magic_token } = JSON.parse(new Buffer(state, 'base64').toString())
-        if(magic_token){
-            urlBack =  "?returnTo="+returnTo+"&magic_token="+magic_token;
-        }else{
-            urlBack =  "?returnTo="+returnTo;
-        }
+        const { returnTo } = JSON.parse(new Buffer(state, 'base64').toString())
+
+        urlBack =  "?returnTo="+returnTo;
         
     } catch (e) {
-        // just redirect normally below
+        // redirect normally below
     }
     return passport.authenticate('google', {
         callbackURL: `${process.env.DEV_APP_WEB_DOMAIN ? 'http://' : 'https://'}${req.hostname}/${constants.GOOGLE.API_SIGNIN_CALLBACK_ROUTE}`,
