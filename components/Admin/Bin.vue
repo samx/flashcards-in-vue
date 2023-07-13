@@ -1,11 +1,13 @@
 <template>
-<div class="card">
+<NuxtLink :to="{ path: '/admin/bin', query: { level: bin.bin_level }}">
+<div class="card has-background-warning">
+
   <div class="card-content">
     <p class="title has-text-centered">
         Bin  {{ bin.bin_level }}
     </p>
-
   </div>
+
   <footer class="card-footer">
     <p class="card-footer-item">
       <span>
@@ -14,7 +16,7 @@
     </p>
   </footer>
 </div>
-
+</NuxtLink>
 
 </template>
 
@@ -28,3 +30,9 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="scss">
+.card{
+    border-radius: 10px;
+}
+</style>
