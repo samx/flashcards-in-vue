@@ -37,10 +37,12 @@ const production = {
         database: process.env.PROD_POSTGRES_DATABASE || null,
     },
     redis: {
-        host: process.env.PROD_REDIS_HOST || '127.0.0.1',
-        port: process.env.PROD_REDIS_PORT || 6379,
-        pass: process.env.PROD_REDIS_PASS ||false,
-        auth_pass: process.env.PROD_REDIS_AUTH_PASS || false
+        host: process.env.PROD_REDIS_HOST,
+        port: process.env.PROD_REDIS_PORT,
+        pass: process.env.PROD_REDIS_PASS,
+        auth_pass: process.env.PROD_REDIS_AUTH_PASS,
+        no_ready_check: true
+
     },
     googleStrategy: {
         clientID: process.env.PROD_GOOGLE_STRATEGY_CLIENT_ID,
