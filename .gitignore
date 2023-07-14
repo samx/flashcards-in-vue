@@ -3,3 +3,4 @@ history
 .history
 app
 .env
+*.code-workspace
