@@ -26,6 +26,8 @@ router.get("/bins", BinController.getTotalCardsInBinsByUserId);
 router.get("/bin/:bin_id", BinController.getCardsInBinByUserId);
 
 // Cards
+router.post("/card/:card_id/answer", CardController.cardAnswer);
 router.post("/card", CardController.createNewFlashCard);
+router.get("/card", CardController.drawCard);
 
 module.exports = router;

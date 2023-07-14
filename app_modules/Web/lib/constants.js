@@ -1,6 +1,21 @@
 
 
 var constants = {
+    NEXT_DISPLAY_TIME_DELAY_BIN:{
+        0:0,
+        1:5,
+        2:25,
+        3:120,
+        4:600,
+        5:3600,
+        6:18000,
+        7:86400,
+        8:432000,
+        9:2160000,
+        10:13150000,
+        11:null
+    },
+
     GOOGLE: {
         API_SIGNIN_CALLBACK_ROUTE: 'api/web/auth/google/callback',
         API_SIGNIN_ACCESS_TYPE: 'offline',
