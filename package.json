@@ -7,8 +7,9 @@
     "dev": "nuxt",
     "generate": "cross-env DEPLOY_ENV=production NODE_ENV=production nuxt generate",
     "build": "cross-env DEPLOY_ENV=production NODE_ENV=production nuxt build",
-    "start": "nuxt start",
-    "start:dev": "cross-env DEPLOY_ENV=development NODE_ENV=development DEV_APP_WEB_DOMAIN=flashy1.win APP_WEB_DOMAIN=https://flashy1.win nodemon app.js --watch"
+    "start": "node app.js",
+    "start:dev": "cross-env DEPLOY_ENV=development NODE_ENV=development DEV_APP_WEB_DOMAIN=flashy1.win APP_WEB_DOMAIN=https://flashy1.win nodemon app.js --watch",
+    "start:prod": "cross-env DEPLOY_ENV=production NODE_ENV=production nodemon app.js --watch server"
   },
   "dependencies": {
     "@nuxt/http": "^0.6.4",
