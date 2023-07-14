@@ -21,14 +21,15 @@ exports.cardAnswer = catchAsync(async (req, res, next) => {
     const { user_id } = req.user || { user_id: null };
     const { card_id } = req.params;
     let { correct, bin_id, word_wrong_count } = req.body;
-
-    bin_id = (correct)? bin_id + 1 : 1;       
+    
+    bin_id = (correct)? bin_id + 1 : 2; 
+    bin_level =   bin_id - 1    
 
     const results = await CardService.answerCardService({
         user_id,
         card_id,
         move_to_bin_id:bin_id,
-        interval_seconds: constants.NEXT_DISPLAY_TIME_DELAY_BIN[bin_id],
+        interval_seconds: constants.NEXT_DISPLAY_TIME_DELAY_BIN[bin_level],
         increment_wrong_count: (!correct)? 1 : 0,
         hard_to_remember: (!correct && word_wrong_count > 8)? true : false       
     });
