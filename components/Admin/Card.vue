@@ -33,7 +33,7 @@
             return this.$options.filters.timeLeft(this.card.time_difference_in_seconds)
           },
           nextDisplayTime(){
-            if(Number(this.card.word_wrong_count) > 9){
+            if(Number(this.card.word_wrong_count) > 9 || this.card.bin_id === 12){
               return 'Next display time: <span class="has-text-danger">never</span>' 
             }else{
               return 'Next display time: '+ this.timeLeft;
