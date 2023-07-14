@@ -1,0 +1,17 @@
+{
+  "entry": "server.js",
+  "files": {
+    "pages/admin.js": "pages/admin.js",
+    "pages/admin/bin.js": "pages/admin/bin.js",
+    "pages/admin/index.js": "pages/admin/index.js",
+    "pages/index.js": "pages/index.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "pages/admin.js": "pages/admin.js.map",
+    "pages/admin/bin.js": "pages/admin/bin.js.map",
+    "pages/admin/index.js": "pages/admin/index.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "server.js": "server.js.map"
+  }
+}
