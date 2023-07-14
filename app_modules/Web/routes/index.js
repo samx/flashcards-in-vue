@@ -11,9 +11,13 @@ const {
 } = controllers;
 
 //Login
+router.get('/user', LoginController.getLoggedInUser);
 router.get('/login', LoginController.login);
 router.get('/logout', LoginController.logout);
 router.get('/isLogged', LoginController.isLogged);
+
+// TempUser - signin
+router.get("/user/temp", LoginController.createTempUser);
 
 // Google - Signin
 router.get("/auth/google", LoginController.googleGotoSignIn);

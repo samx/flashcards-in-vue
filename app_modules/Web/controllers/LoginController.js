@@ -6,6 +6,13 @@ const catchAsync = require("./catchAsync");
 
 const { UserService } = require('../services');
 
+exports.getLoggedInUser = catchAsync(async (req, res, next) => {
+    let { user_id, username } = (req.session['passport'] && req.session['passport']['user']) 
+    ? req.session['passport']['user'] :  req.user || { user_id: null };
+
+    res.send({user_id, username})
+});
+
 exports.login = function (req, res, next) {
     return res.render('login', { 
         title: 'Flashy site', 
@@ -32,6 +39,29 @@ exports.isLogged = (req, res, next) => {
 
 const { uniqueNamesGenerator, adjectives, colors, animals, starWars  } = require('unique-names-generator');
 
+exports.createTempUser = catchAsync(async (req, res, next) => {
+
+    const username = uniqueNamesGenerator({ 
+        dictionaries: [adjectives, colors, animals, starWars ],
+        separator: ''
+    }); 
+
+    let result = await UserService.createUserService({
+        username,
+        provider_id:username,
+        provider:'temp'
+    });
+
+    req.session['passport'] = {
+        user:{
+            user_id:result,
+            username
+        }
+    };
+
+    return res.send({ user_id:result, username})
+})
+
 exports.thirdPartyProviderDataFromSignIn = async function (req, access_token, refresh_token, profile, done) {
     let { provider, id: provider_id } = profile;
     
@@ -41,16 +71,17 @@ exports.thirdPartyProviderDataFromSignIn = async function (req, access_token, re
     provider_id = provider_id.toString();
 
     let user_id = null;
+    let username = null;
 
     //User not found in DB. Create new user and return user_id
     if (foundUser === false) {
-        const randomName = uniqueNamesGenerator({ 
+        username = uniqueNamesGenerator({ 
             dictionaries: [adjectives, colors, animals, starWars ],
             separator: ''
         }); 
 
         let result = await UserService.createUserService({
-            username:randomName,
+            username,
             provider_id,
             provider
         });
@@ -58,9 +89,10 @@ exports.thirdPartyProviderDataFromSignIn = async function (req, access_token, re
         user_id = result;
     } else {
         user_id = foundUser.user_id;
+        username = foundUser.username;
     }
 	
-    return done(null, Object.assign({}, req.user, { user_id, provider }));
+    return done(null, Object.assign({}, req.user, { user_id, provider, username }));
 }
 
 // Google Sign in.
