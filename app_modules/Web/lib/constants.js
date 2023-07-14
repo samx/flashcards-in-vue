@@ -1,8 +1,7 @@
 
 
 var constants = {
-    NEXT_DISPLAY_TIME_DELAY_BIN:{
-        0:0,
+    NEXT_DISPLAY_TIME_DELAY_BIN:{ //based on Bin_id 2-12 not Bin_level 1-11
         1:5,
         2:25,
         3:120,
@@ -13,7 +12,7 @@ var constants = {
         8:432000,
         9:2160000,
         10:13150000,
-        11:null
+        11:0
     },
 
     GOOGLE: {
