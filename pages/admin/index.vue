@@ -5,7 +5,7 @@
                 Your flash cards dashboard
             </p>
             <p class="subtitle">
-                Click bins to the left view your cards
+                Click the bins on the sidebar to view your cards
             </p>
         </div>
     </section>

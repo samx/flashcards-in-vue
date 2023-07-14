@@ -49,7 +49,7 @@
 
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
 
@@ -75,7 +75,6 @@ export default {
             definition:this.definition
         })
 
-        console.log(this.$route.query.level)
         if(this.$route.query.level == 0){
             location.reload();
             return false;
