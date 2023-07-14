@@ -39,6 +39,7 @@
 
 
 <script>
+import {  mapActions } from "vuex";
 
 export default {
 
@@ -49,6 +50,7 @@ export default {
       }
   },
   methods: {
+    ...mapActions("AdminStore", ["loginAsTempUserAction"]),
     openModal(){
         this.showModal = true;
     },
@@ -56,8 +58,8 @@ export default {
         let currentWindow = window.location.href;
         window.location.href = `https://${window.location.hostname}/api/web/auth/google?returnTo=${currentWindow}`;
     },
-    loginAsTempUser(){
-        this.$store.dispatch("loginAsTempUserAction")
+    async loginAsTempUser(){
+       this.loginAsTempUserAction()
     }
   },
   created () {

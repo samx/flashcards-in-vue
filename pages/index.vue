@@ -4,7 +4,7 @@
         <div class="is-flex">
             <div v-if="$store.state.isLogged">
                 <font class="is-size-4 has-text-white">username: {{ $store.state.user.username }}</font>
-                <button @click="$store.dispatch('signout')" class="mx-2 is-info is-light  button">Logout</button> 
+                <button @click="signout" class="mx-2 is-info is-light  button">Logout</button> 
                 <button @click="$router.push({path: '/admin/bin', query: { level: 0 }});" class="mx-2 is-info is-light  button">View Cards</button> 
             </div>
 
@@ -90,7 +90,10 @@ export default {
     ...mapState("HomeStore",["hasAlert","card"]),
   },
   methods: {
-    ...mapActions("HomeStore", ["drawCard","answerCard"]),
+    ...mapActions("HomeStore", ["drawCard","answerCard","signoutAction"]),
+    signout(){
+        this.signoutAction()
+    },
     async correct(value){
         this.cardReady = false;
 

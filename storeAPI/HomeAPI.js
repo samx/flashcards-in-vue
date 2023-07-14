@@ -15,8 +15,22 @@ function answerCardAPI(payload) {
         data:payload
     });
 }
+function loginAsTempUserAPI(){
+    return axios({
+        method: 'get',
+        url: `/api/web/user/temp`,
+    });
+}
+function signoutAPI(){
+    return axios({
+        method: 'get',
+        url: `/api/web/logout?redirect=false`,
+    });
+}
 
 export {
     drawCardAPI,
-    answerCardAPI
+    answerCardAPI,
+    loginAsTempUserAPI,
+    signoutAPI
 }

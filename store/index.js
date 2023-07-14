@@ -30,13 +30,5 @@ export const actions = {
     },
     getUser() {
         return this.$axios.get("/api/web/user");
-    },
-    async loginAsTempUserAction(){
-        await this.$axios.get("/api/web/user/temp");
-        window.location.reload()
-    },
-    async signout({commit,dispatch}){
-        await this.$axios.get("/api/web/logout?redirect=false");
-        window.location.reload()
-    },
+    }
 };

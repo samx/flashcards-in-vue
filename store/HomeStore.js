@@ -1,6 +1,8 @@
 import { 
     drawCardAPI,
-    answerCardAPI
+    answerCardAPI,
+    loginAsTempUserAPI,
+    signoutAPI
  } from '../storeAPI/HomeAPI'
 
 export const strict = false;
@@ -34,5 +36,13 @@ export const actions = {
     },
     async answerCard({commit,dispatch}, payload){
         const { data} = await answerCardAPI(payload);
+    },
+    async loginAsTempUserAction({commit,dispatch}){
+        await loginAsTempUserAPI()  
+        //window.location.reload()    
+    },
+    async signoutAction({commit,dispatch}){
+        await signoutAPI()
+        //window.location.reload()
     }
 };
