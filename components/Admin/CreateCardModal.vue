@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="has-text-centered">
-            <button @click="showModal = true" class="is-fullwidth button m-3 ">Create Card</button>
+        <div class="p-3">
+            <button @click="showModal = true" class="is-fullwidth button ">Create Card</button>
         </div>
         <b-modal
             v-model="showModal"
@@ -70,12 +70,20 @@ export default {
             definition:this.definition
         })
 
+        console.log(this.$route.query.level)
+        if(this.$route.query.level == 0){
+            location.reload();
+            return false;
+        }
+
         this.$router.push({
              path: '/admin/bin', query: { level: 0 }
         });
 
         this.showModal = false;
         this.isLoading = false;
+        this.word = ""
+        this.definition = ""
     }
   },
   created () {
