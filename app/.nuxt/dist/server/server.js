@@ -4017,15 +4017,14 @@ const actions = {
     dispatch
   }) {
     await loginAsTempUserAPI();
-    //window.location.reload()    
+    window.location.reload();
   },
-
   async signoutAction({
     commit,
     dispatch
   }) {
     await signoutAPI();
-    //window.location.reload()
+    window.location.reload();
   }
 };
 
