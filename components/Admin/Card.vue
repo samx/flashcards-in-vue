@@ -9,7 +9,7 @@
       <footer class="card-footer">
         <p class="card-footer-item">
           <span>
-            Next display:
+            Next display: {{ card.bin_word_date_next_display  }}
           </span>
         </p>
         <p class="card-footer-item">
