@@ -6,7 +6,7 @@ exports.modules = {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./components/Shared/CreateCardModal.vue?vue&type=template&id=22e465e1&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./components/Shared/CreateCardModal.vue?vue&type=template&id=2ac0fa51&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -108,7 +108,7 @@ var render = function render() {
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./components/Shared/CreateCardModal.vue?vue&type=template&id=22e465e1&
+// CONCATENATED MODULE: ./components/Shared/CreateCardModal.vue?vue&type=template&id=2ac0fa51&
 
 // EXTERNAL MODULE: external "vuex"
 var external_vuex_ = __webpack_require__(6);
@@ -136,7 +136,6 @@ var external_vuex_ = __webpack_require__(6);
         word: this.word,
         definition: this.definition
       });
-      console.log(this.$route.query.level);
       if (this.$route.query.level == 0) {
         location.reload();
         return false;

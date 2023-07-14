@@ -1219,17 +1219,6 @@ const actions = {
   },
   getUser() {
     return this.$axios.get("/api/web/user");
-  },
-  async loginAsTempUserAction() {
-    await this.$axios.get("/api/web/user/temp");
-    window.location.reload();
-  },
-  async signout({
-    commit,
-    dispatch
-  }) {
-    await this.$axios.get("/api/web/logout?redirect=false");
-    window.location.reload();
   }
 };
 
@@ -3971,6 +3960,18 @@ function answerCardAPI(payload) {
     data: payload
   });
 }
+function loginAsTempUserAPI() {
+  return external_axios_default()({
+    method: 'get',
+    url: `/api/web/user/temp`
+  });
+}
+function signoutAPI() {
+  return external_axios_default()({
+    method: 'get',
+    url: `/api/web/logout?redirect=false`
+  });
+}
 
 // CONCATENATED MODULE: ./store/HomeStore.js
 
@@ -4010,6 +4011,21 @@ const actions = {
     const {
       data
     } = await answerCardAPI(payload);
+  },
+  async loginAsTempUserAction({
+    commit,
+    dispatch
+  }) {
+    await loginAsTempUserAPI();
+    //window.location.reload()    
+  },
+
+  async signoutAction({
+    commit,
+    dispatch
+  }) {
+    await signoutAPI();
+    //window.location.reload()
   }
 };
 
