@@ -13,8 +13,6 @@
     <div class="column" v-for="(card, index) in binCards">
         <Card :card="card" :key="'card'+index" :id="'card'+index"></Card>
     </div>
-    
-
 </div>
 </template>
 
@@ -28,7 +26,8 @@ export default {
     },
     data() {
         return {
-            bin_level:null
+            bin_level:null,
+            scrollToTop: true
         }
     },
     computed:{
@@ -51,6 +50,7 @@ export default {
     },
     watch: {
         binLevel(){
+            document.body.scrollTop = window.scrollTo(0, 0);
             this.loadCards()
         }
     }
