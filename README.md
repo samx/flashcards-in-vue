@@ -26,3 +26,35 @@ Bins table ( a simple table to help manage and query cards in bins)
 |---------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | bin_id              | serial/primaryKey |                                                                                                                                |
 | bin_level           | integer           | The bin number that cards move into. Range 0-11   
+
+
+Example table data
+
+![image info](./assets/images/bins-table.png)
+
+
+SQL Scripts
+
+**bins_gets_cards_in_bins.sql**
+- Returns a list of cards that are currently in Bin ##.
+- Used in the Admin main section of the admin page
+
+**bins_get_total_cards_in_bins.sql**
+- Returns a list of bins with counts of cards in a bin.
+- Used in the Admin section sidebar to preview and navigate to cards in a bin
+
+**cards active_cards.sql** 
+- Gets all the card_ids by a user_id that could be shown in the future.  
+- Used as helper script to help pick which alert message to display in CardController.
+
+**cards_draw_cards.sql**
+- A list of a potiential cards that maybe drawn on the homepage.
+
+**cards_update_bin_card.sql**
+- This stored procedure function is run when the user answers 'i got it' and 'i did not get it'.
+
+Actions:
+* Sets the delay time when card should next appear
+* Moves the card to next bin or down to the start bin
+* Increments the answered wrong totals
+* Assigns the card to be hidden forever if it is too hard to remember
