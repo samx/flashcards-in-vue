@@ -50,7 +50,7 @@ export default {
       }
   },
   methods: {
-    ...mapActions("AdminStore", ["loginAsTempUserAction"]),
+    ...mapActions("HomeStore", ["loginAsTempUserAction"]),
     openModal(){
         this.showModal = true;
     },

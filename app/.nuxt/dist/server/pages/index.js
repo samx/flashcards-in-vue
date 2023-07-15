@@ -256,8 +256,8 @@ var external_vuex_ = __webpack_require__(6);
 // EXTERNAL MODULE: ./components/Shared/CreateCardModal.vue + 4 modules
 var CreateCardModal = __webpack_require__(44);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./components/Shared/LoginModal.vue?vue&type=template&id=602c7897&
-var LoginModalvue_type_template_id_602c7897_render = function render() {
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./components/Shared/LoginModal.vue?vue&type=template&id=41ae8bc7&
+var LoginModalvue_type_template_id_41ae8bc7_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c('div', [_c('b-modal', {
@@ -322,9 +322,9 @@ var LoginModalvue_type_template_id_602c7897_render = function render() {
     }
   })], 1);
 };
-var LoginModalvue_type_template_id_602c7897_staticRenderFns = [];
+var LoginModalvue_type_template_id_41ae8bc7_staticRenderFns = [];
 
-// CONCATENATED MODULE: ./components/Shared/LoginModal.vue?vue&type=template&id=602c7897&
+// CONCATENATED MODULE: ./components/Shared/LoginModal.vue?vue&type=template&id=41ae8bc7&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib??vue-loader-options!./components/Shared/LoginModal.vue?vue&type=script&lang=js&
 
@@ -336,7 +336,7 @@ var LoginModalvue_type_template_id_602c7897_staticRenderFns = [];
     };
   },
   methods: {
-    ...Object(external_vuex_["mapActions"])("AdminStore", ["loginAsTempUserAction"]),
+    ...Object(external_vuex_["mapActions"])("HomeStore", ["loginAsTempUserAction"]),
     openModal() {
       this.showModal = true;
     },
@@ -365,8 +365,8 @@ var componentNormalizer = __webpack_require__(3);
 
 var component = Object(componentNormalizer["a" /* default */])(
   Shared_LoginModalvue_type_script_lang_js_,
-  LoginModalvue_type_template_id_602c7897_render,
-  LoginModalvue_type_template_id_602c7897_staticRenderFns,
+  LoginModalvue_type_template_id_41ae8bc7_render,
+  LoginModalvue_type_template_id_41ae8bc7_staticRenderFns,
   false,
   null,
   null,

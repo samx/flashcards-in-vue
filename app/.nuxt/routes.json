@@ -8,24 +8,20 @@
         "name": "admin",
         "path": "",
         "component": "D:\\\\hiring-flashcards\\\\pages\\\\admin\\\\index.vue",
-        "chunkName": "pages/admin/index",
-        "_name": "_774b2f88"
+        "chunkName": "pages/admin/index"
       },
       {
         "name": "admin-bin",
         "path": "bin",
         "component": "D:\\\\hiring-flashcards\\\\pages\\\\admin\\\\bin.vue",
-        "chunkName": "pages/admin/bin",
-        "_name": "_65dce671"
+        "chunkName": "pages/admin/bin"
       }
-    ],
-    "_name": "_70814986"
+    ]
   },
   {
     "name": "index",
     "path": "/",
     "component": "D:\\\\hiring-flashcards\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_3f11f589"
+    "chunkName": "pages/index"
   }
 ]
