@@ -1,4 +1,4 @@
-# hiring-samson-ogundigie-flashcards
+# flashcards in Vue
 
 ## DB Schema
 User table
